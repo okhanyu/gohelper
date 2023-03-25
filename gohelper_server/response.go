@@ -2,6 +2,7 @@ package gohelper_server
 
 import (
 	"github.com/gin-gonic/gin"
+	"io"
 	"net/http"
 )
 
@@ -33,6 +34,10 @@ func Success(c *gin.Context, data interface{}) {
 			"data": data,
 		},
 	)
+}
+
+func SuccessStream(c *gin.Context, step func(w io.Writer) bool) {
+	c.Stream(step)
 }
 
 // SuccessPlain 原样

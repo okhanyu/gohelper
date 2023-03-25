@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/okhanyu/gohelper/gohelper_cons"
 	"io"
 	"net/http"
 	"net/url"
@@ -27,7 +28,7 @@ func HttpGetWithValues(request *RequestInfo, param url.Values, proxy string) (st
 	}
 	uri.RawQuery = param.Encode()
 	request.URL = uri.String()
-	request.Header["Content-Type"] = hycons.Form
+	request.Header["Content-Type"] = gohelper_cons.Form
 
 	result, err := send(request, proxy)
 	return result, err
@@ -35,14 +36,14 @@ func HttpGetWithValues(request *RequestInfo, param url.Values, proxy string) (st
 
 func HttpPostWithValues(request *RequestInfo, param url.Values, proxy string) (string, error) {
 	request.body = strings.NewReader(param.Encode())
-	request.Header["Content-Type"] = hycons.Form
+	request.Header["Content-Type"] = gohelper_cons.Form
 	result, err := send(request, proxy)
 	return result, err
 }
 
 func HttpPostWithString(request *RequestInfo, param string, proxy string) (string, error) {
 	request.body = strings.NewReader(param)
-	request.Header["Content-Type"] = hycons.Form
+	request.Header["Content-Type"] = gohelper_cons.Form
 	result, err := send(request, proxy)
 	return result, err
 }
@@ -55,7 +56,7 @@ func HttpPostWithJson(request *RequestInfo, param interface{}, proxy string) (st
 	}
 	paramBody := bytes.NewReader(paramBytes)
 	request.body = paramBody
-	request.Header["Content-Type"] = hycons.Json
+	request.Header["Content-Type"] = gohelper_cons.Json
 	result, err := send(request, proxy)
 	return result, err
 }
