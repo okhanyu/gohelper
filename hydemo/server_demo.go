@@ -3,7 +3,7 @@ package hydemo
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"go-helper/hyserver"
+	"github.com/okhanyu/gohelper/hyserver"
 )
 
 func StartHttpServerDemo() {

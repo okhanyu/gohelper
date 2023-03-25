@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"go-helper/hycons"
+	"github.com/okhanyu/gohelper/hycons"
 	"io"
 	"net/http"
 	"net/url"
