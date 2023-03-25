@@ -1,4 +1,4 @@
-package hydb
+package gohelper_db
 
 import (
 	"fmt"

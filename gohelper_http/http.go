@@ -1,10 +1,9 @@
-package hyhttp
+package gohelper_http
 
 import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/okhanyu/gohelper/hycons"
 	"io"
 	"net/http"
 	"net/url"

@@ -1,4 +1,4 @@
-package hyserver
+package gohelper_server
 
 import (
 	"fmt"

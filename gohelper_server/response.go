@@ -1,4 +1,4 @@
-package hyserver
+package gohelper_server
 
 import (
 	"github.com/gin-gonic/gin"
