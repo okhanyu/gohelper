@@ -21,10 +21,14 @@ func GenerateRouter(prefix string, Uri string, Handlers []gin.HandlerFunc) *Rout
 }
 
 // StartServer 启动服务
-func StartServer(routers map[string][]*Router, ipPort string) {
+func StartServer(routers map[string][]*Router, ipPort string, f ...gin.HandlerFunc) *gin.Engine {
 	//engine = gin.New()
 	//engine.Use(gin.Recovery())
 	engine = gin.Default()
+
+	if f != nil && len(f) != 0 {
+		engine.Use(f...)
+	}
 
 	for method, routerGroup := range routers {
 		if method == http.MethodGet {
@@ -58,6 +62,8 @@ func StartServer(routers map[string][]*Router, ipPort string) {
 
 	if err != nil {
 		fmt.Println(err)
-		return
+		return nil
 	}
+
+	return engine
 }
