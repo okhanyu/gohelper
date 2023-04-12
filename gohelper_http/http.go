@@ -28,14 +28,19 @@ func HttpGetWithValues(request *RequestInfo, param url.Values, proxy string) (st
 	}
 	uri.RawQuery = param.Encode()
 	request.URL = uri.String()
+	if request.Header == nil {
+		request.Header = make(map[string]string)
+	}
 	request.Header["Content-Type"] = gohelper_cons.Form
-
 	result, err := send(request, proxy)
 	return result, err
 }
 
 func HttpPostWithValues(request *RequestInfo, param url.Values, proxy string) (string, error) {
 	request.body = strings.NewReader(param.Encode())
+	if request.Header == nil {
+		request.Header = make(map[string]string)
+	}
 	request.Header["Content-Type"] = gohelper_cons.Form
 	result, err := send(request, proxy)
 	return result, err
@@ -43,6 +48,9 @@ func HttpPostWithValues(request *RequestInfo, param url.Values, proxy string) (s
 
 func HttpPostWithString(request *RequestInfo, param string, proxy string) (string, error) {
 	request.body = strings.NewReader(param)
+	if request.Header == nil {
+		request.Header = make(map[string]string)
+	}
 	request.Header["Content-Type"] = gohelper_cons.Form
 	result, err := send(request, proxy)
 	return result, err
@@ -56,6 +64,9 @@ func HttpPostWithJson(request *RequestInfo, param interface{}, proxy string) (st
 	}
 	paramBody := bytes.NewReader(paramBytes)
 	request.body = paramBody
+	if request.Header == nil {
+		request.Header = make(map[string]string)
+	}
 	request.Header["Content-Type"] = gohelper_cons.Json
 	result, err := send(request, proxy)
 	return result, err
